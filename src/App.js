@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import List from "./components/List";
+import { Grid, Box, AppBar, Toolbar, Typography } from "@material-ui/core";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container direction="column">
+      <Grid item xs={12}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6">Todo app</Typography>
+          </Toolbar>
+        </AppBar>
+      </Grid>
+      <Box mt="2rem">
+        <Grid container item alignItems="center">
+          <Grid item xs={false} sm={false} md={1} />
+          <Grid item xs={12} sm={12} md={10}>
+            <List />
+          </Grid>
+          <Grid item xs={false} sm={false} md={1} />
+        </Grid>
+      </Box>
+    </Grid>
   );
 }
 
