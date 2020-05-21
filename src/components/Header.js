@@ -21,13 +21,16 @@ export default function Header(props) {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
   const renameModal = () => {
+    setAnchorEl(null);
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
   const delModal = () => {
-    
+    setAnchorEl(null);
+
+    props.delTodo();
   };
   
   return (
@@ -40,7 +43,7 @@ export default function Header(props) {
               <Button flex aria-label="rename" size="small" onClick={renameModal} >
                  Rename
                </Button>
-               <Button flex aria-label="rename" size="small" onClick={props.delTodo} >
+               <Button flex aria-label="rename" size="small" onClick={delModal} >
                  Delete
                </Button>
                </Box>
