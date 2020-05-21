@@ -29,19 +29,23 @@ class List extends React.Component {
     });
   };
 
+  delTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
+    });
+  };
+
   render() {
     return (
       <div>
         <Grid container spacing={2} alignItems="center" justify="center">
           {this.state.todos.map((todo) => (
             <Grid item xs={12} sm={4}>
-              <Todo id={todo.id} title={todo.title} className="col-md" />
+              <Todo id={todo.id} title={todo.title} delTodo={this.delTodo} className="col-md" />
             </Grid>
           ))}
 
           <IconButton
-            className="btn btn-primary"
-            type="button"
             onClick={this.addTodo}
           >
             <AddToPhotosIcon fontSize="large" />

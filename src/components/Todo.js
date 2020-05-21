@@ -1,19 +1,18 @@
 import React from "react";
 import Item from "./Item";
+import Header from "./Header";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import {
   Card,
   CardContent,
   CardActions,
-  Button,
   IconButton,
-  CardHeader,
   List,
   TextField,
   Container,
   Box,
 } from "@material-ui/core";
+
 
 class Todo extends React.Component {
   constructor(props) {
@@ -37,17 +36,11 @@ class Todo extends React.Component {
   }
 
   render() {
+    
     return (
       <Container>
         <Card variant="elevation">
-          <CardHeader
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={this.props.title}
-          />
+          <Header title={this.props.title} renameTodo={this.renameTodo} delTodo={this.props.delTodo.bind(this,this.props.id)} />
           <CardContent>
             <Box height="11rem" overflow="auto">
             <List>
@@ -70,9 +63,9 @@ class Todo extends React.Component {
                 />
               </Box>
               <Box>
-                <Button type="submit" size="small" onClick={this.addItem}>
-                  <AddBoxOutlinedIcon />
-                </Button>
+                <IconButton type="submit" size="small" onClick={this.addItem}>
+                  <AddBoxOutlinedIcon color="secondary" />
+                </IconButton>
               </Box>
             </Box>
           </CardActions>
@@ -80,6 +73,11 @@ class Todo extends React.Component {
       </Container>
     );
   }
+
+  renameTodo = () => {
+    console.log("dw")
+  }
+  
 
   addItem = () => {
     let inp = this.state.inputText === "" ? "Task" : this.state.inputText;
@@ -107,6 +105,9 @@ class Todo extends React.Component {
       inputText: e.target.value,
     });
   };
+
+ 
+
 }
 
 export default Todo;
