@@ -35,6 +35,51 @@ class Todo extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.setState({
+    newId:localStorage.getItem('newId')||this.state.newId,
+    items: JSON.parse(localStorage.getItem('items'))||this.state.items
+  })
+}
+
+  componentDidUpdate(){
+    localStorage.setItem('newId',this.state.newId);
+    localStorage.setItem('items',JSON.stringify(this.state.items));
+  }
+
+  renameTodo = () => {
+    console.log("dw")
+  }
+  
+
+  addItem = () => {
+    let inp = this.state.inputText === "" ? "Task" : this.state.inputText;
+    this.setState({
+      items: [
+        ...this.state.items,
+        {
+          id: this.state.newId,
+          text: inp,
+          complete: false,
+        },
+      ],
+      newId: this.state.newId + 1,
+      inputText: "",
+    });
+  };
+  delItem = (id) => {
+    this.setState({
+      items: [...this.state.items.filter((item) => item.id !== id)],
+    });
+  };
+
+  onChange = (e) => {
+    this.setState({
+      inputText: e.target.value,
+    });
+  };
+
+
   render() {
     
     return (
@@ -73,38 +118,6 @@ class Todo extends React.Component {
       </Container>
     );
   }
-
-  renameTodo = () => {
-    console.log("dw")
-  }
-  
-
-  addItem = () => {
-    let inp = this.state.inputText === "" ? "Task" : this.state.inputText;
-    this.setState({
-      items: [
-        ...this.state.items,
-        {
-          id: this.state.newId,
-          text: inp,
-          complete: false,
-        },
-      ],
-      newId: this.state.newId + 1,
-      inputText: "",
-    });
-  };
-  delItem = (id) => {
-    this.setState({
-      items: [...this.state.items.filter((item) => item.id !== id)],
-    });
-  };
-
-  onChange = (e) => {
-    this.setState({
-      inputText: e.target.value,
-    });
-  };
 
  
 
