@@ -37,14 +37,14 @@ class Todo extends React.Component {
 
   componentDidMount(){
     this.setState({
-    newId:localStorage.getItem('newId')||this.state.newId,
-    items: JSON.parse(localStorage.getItem('items'))||this.state.items
+    newId:localStorage.getItem('newId'+this.props.id)||this.state.newId,
+    items: JSON.parse(localStorage.getItem('items'+this.props.id))||this.state.items
   })
 }
 
   componentDidUpdate(){
-    localStorage.setItem('newId',this.state.newId);
-    localStorage.setItem('items',JSON.stringify(this.state.items));
+    localStorage.setItem('newId'+this.props.id,this.state.newId);
+    localStorage.setItem('items'+this.props.id,JSON.stringify(this.state.items));
   }
 
   renameTodo = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Todo from "./Todo";
-import { Grid, IconButton } from "@material-ui/core";
+import { Grid, IconButton, Box } from "@material-ui/core";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 
 
@@ -55,10 +55,15 @@ class List extends React.Component {
         <Grid container spacing={2} alignItems="center" justify="center">
           {
             this.state.todos.map((todo) => (
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={4} >
+              <Box mt={2}>
+
               <Todo id={todo.id} title={todo.title} delTodo={this.delTodo} className="col-md" />
+            </Box>
+
             </Grid>
           ))
+
           }
 
           <IconButton

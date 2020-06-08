@@ -14,8 +14,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpen] = React.useState(false);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
