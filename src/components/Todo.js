@@ -84,9 +84,10 @@ class Todo extends React.Component {
           complete: false,
         },
       ],
-      newId: this.state.newId + 1,
+      newId: Number(this.state.newId) + 1,
       inputText: "",
     });
+    console.log(this.state.newId);
   };
   delItem = (id) => {
     this.setState({
@@ -117,6 +118,7 @@ class Todo extends React.Component {
                     {this.state.items.map((item) => (
                       <Item
                         id={item.id}
+                        key={item.id}
                         text={item.text}
                         delItem={this.delItem}
                         openDialog={this.openDialog}

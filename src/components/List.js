@@ -6,8 +6,8 @@ import NameDialog from "./NameDialog";
 
 class List extends React.Component {
   constructor(props) {
-    console.log(localStorage.getItem("todos"));
     super(props);
+    console.log(localStorage.getItem("todos"));
     this.state = {
       new_id: 1,
       todos: [],
@@ -54,6 +54,8 @@ class List extends React.Component {
   };
 
   delTodo = (id) => {
+    localStorage.removeItem("items" + id);
+    localStorage.removeItem("newId" + id);
     this.setState({
       todos: [...this.state.todos.filter((todo) => todo.id !== id)],
     });
@@ -76,6 +78,7 @@ class List extends React.Component {
           {this.state.todos.map((todo) => (
             <Todo
               id={todo.id}
+              key={todo.id}
               title={todo.title}
               delTodo={this.delTodo}
               renameTodo={this.renameTodo}
